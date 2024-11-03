@@ -1,10 +1,4 @@
-.home-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .search-bar {
+.search-bar {
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -35,7 +29,7 @@
     border-radius: 4px;
   }
   
-  .showroom-container {
+  .car-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,15 +53,6 @@
   
   .item-card p {
     margin: 0 0 10px 0;
-  }
-  
-  .item-card a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .item-card a:hover {
-    text-decoration: underline;
   }
   
   .pagination {

@@ -1,6 +1,6 @@
 <div>
     <div class="search-bar">
-      <input type="text" (keyup)="applyFilter($event)" placeholder="Search showrooms">
+      <input type="text" (keyup)="applyFilter($event)" placeholder="Search cars">
     </div>
     
     <div class="sort-options">
@@ -11,12 +11,16 @@
       </select>
     </div>
     
-    <div class="showroom-container">
+    <div class="car-container">
       <div class="items-list">
-        <div class="item-card" *ngFor="let item of showroomItems(); trackBy: trackByCommercialRegistrationNumber">
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.phoneNumber }}</p>
-          <a [routerLink]="['/showroom', item.commercialRegistrationNumber]">View Details</a>
+        <div class="item-card" *ngFor="let item of carItems(); trackBy: trackByUuid">
+          <h3>{{ item.vin }}</h3>
+          <p><strong>Maker:</strong> {{ item.maker }}</p>
+          <p><strong>Model:</strong> {{ item.model }}</p>
+          <p><strong>Model Year:</strong> {{ item.modelYear }}</p>
+          <p><strong>Price:</strong> {{ item.price | currency }}</p>
+          <p><strong>Showroom Name:</strong> {{ item.showroomName }}</p>
+          <p><strong>Showroom Phone Number:</strong> {{ item.showroomPhoneNumber }}</p>
         </div>
       </div>
     

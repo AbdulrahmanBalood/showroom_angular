@@ -1,23 +1,24 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ShowroomDetails, ShowroomForm, ShowroomHomePage } from '../../model/Showroom/ShowroomType.type';
 import { environment } from '../../environment/environment';
 import { Pageable } from '../../model/Pageable/Pageable.type';
-import { Car, CarCreation } from '../../model/Cars/Car.type';
+import { Car, CarCreation, CarTable } from '../../model/Cars/Car.type';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarsService {
   http = inject(HttpClient);
-  getShowroomList(page: number = 0, size: number = 5) {
-    return this.http.get<Pageable<Car>>(`${environment.apiUrl}/public/car`, {
-      params: {
-        page: page.toString(),
-        size: size.toString(),
-        sort: 'updatedAt,desc'
-      }
-    });
+  getCarList(page: number, size: number, searchQuery: string = '', sortField: string = 'updatedAt', sortOrder: string = 'desc'): Observable<Pageable<CarTable>> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('search', searchQuery)
+      .set('sort', `${sortField},${sortOrder}`);
+
+    return this.http.get<Pageable<CarTable>>(`${environment.apiUrl}/public/car`, { params });
   }
   createCar(body:CarCreation) {
     return this.http.post<Car>(`${environment.apiUrl}/private/car`,body);

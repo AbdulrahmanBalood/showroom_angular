@@ -1,21 +1,21 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ShowroomService } from '../../services/ShowroomService/showroom.service';
-import { ShowroomHomePage } from '../../model/Showroom/ShowroomType.type';
+import { CarTable } from '../../model/Cars/Car.type';
 import { catchError } from 'rxjs';
 import { Pageable } from '../../model/Pageable/Pageable.type';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CarsService } from '../../services/CarsService/Cars.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-cars-table',
   standalone: true,
   imports: [RouterLink, CommonModule],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './cars-table.component.html',
+  styleUrls: ['./cars-table.component.css']
 })
-export class HomeComponent implements OnInit {
-  showRoomService = inject(ShowroomService);
-  showroomItems = signal<Array<ShowroomHomePage>>([]);
+export class CarsTableComponent implements OnInit {
+  carService = inject(CarsService);
+  carItems = signal<Array<CarTable>>([]);
   currentPage = signal(0);
   pageSize = signal(5);
   totalPages = signal(0);
@@ -28,13 +28,13 @@ export class HomeComponent implements OnInit {
   }
 
   loadPage(page: number) {
-    this.showRoomService.getShowroomList(page, this.pageSize(), this.searchQuery(), 'updatedAt', this.sortOrder())
+    this.carService.getCarList(page, this.pageSize(), this.searchQuery(), 'updatedAt', this.sortOrder())
       .pipe(catchError((error) => {
         console.error(error);
         return [];
       }))
-      .subscribe((data: Pageable<ShowroomHomePage>) => {
-        this.showroomItems.set(data.content);
+      .subscribe((data: Pageable<CarTable>) => {
+        this.carItems.set(data.content);
         this.totalPages.set(data.totalPages);
         this.totalElements.set(data.totalElements);
       });
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     this.loadPage(0); // Reset to first page on sort
   }
 
-  trackByCommercialRegistrationNumber(index: number, item: ShowroomHomePage): string {
-    return item.commercialRegistrationNumber;
+  trackByUuid(index: number, item: CarTable): string {
+    return item.uuid;
   }
 }
