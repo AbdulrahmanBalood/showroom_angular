@@ -2,6 +2,7 @@ import { Component, Inject, inject, OnInit, PLATFORM_ID, signal } from '@angular
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/AuthService/auth.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ShowroomService } from '../../services/ShowroomService/showroom.service';
 
 @Component({
   selector: 'app-header',
@@ -17,13 +18,12 @@ export class HeaderComponent implements OnInit {
 
   
   async ngOnInit() {
-    // Check if running in the browser before checking authentication
     if (isPlatformBrowser(this.platformId)) {
       const loggedIn = await this.authService.keycloakService.isLoggedIn();
-      console.log('loggedIn (browser):', loggedIn); // Client-side log
+      console.log('loggedIn (browser):', loggedIn); 
       this.isAuthenticated.set(loggedIn);
     } else {
-      console.log('loggedIn (server): false'); // Server-side log, typically set to false
+      console.log('loggedIn (server): false'); 
     }
   }
 

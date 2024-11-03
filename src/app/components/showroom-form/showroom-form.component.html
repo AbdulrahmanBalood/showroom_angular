@@ -1,0 +1,43 @@
+<form [formGroup]="showroomForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" />
+      <div *ngIf="showroomForm.get('name')?.invalid && showroomForm.get('name')?.touched" class="error-message">
+        Name is required and must be less than 100 characters.
+      </div>
+    </div>
+  
+    <div>
+      <label for="commercialRegistrationNumber">Commercial Registration Number:</label>
+      <input id="commercialRegistrationNumber" formControlName="commercialRegistrationNumber" />
+      <div *ngIf="showroomForm.get('commercialRegistrationNumber')?.invalid && showroomForm.get('commercialRegistrationNumber')?.touched" class="error-message">
+        Commercial Registration Number is required and must be 10 digits.
+      </div>
+    </div>
+  
+    <div>
+      <label for="managerName">Manager Name:</label>
+      <input id="managerName" formControlName="managerName" />
+      <div *ngIf="showroomForm.get('managerName')?.invalid && showroomForm.get('managerName')?.touched" class="error-message">
+        Manager Name must be less than 100 characters.
+      </div>
+    </div>
+  
+    <div>
+      <label for="phoneNumber">Contact Number:</label>
+      <input id="phoneNumber" formControlName="phoneNumber" />
+      <div *ngIf="showroomForm.get('phoneNumber')?.invalid && showroomForm.get('phoneNumber')?.touched" class="error-message">
+        Contact Number is required and must be numeric with a maximum of 15 digits.
+      </div>
+    </div>
+  
+    <div>
+      <label for="address">Address:</label>
+      <input id="address" formControlName="address" />
+      <div *ngIf="showroomForm.get('address')?.invalid && showroomForm.get('address')?.touched" class="error-message">
+        Address must be less than 255 characters.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="showroomForm.invalid">Submit</button>
+  </form>

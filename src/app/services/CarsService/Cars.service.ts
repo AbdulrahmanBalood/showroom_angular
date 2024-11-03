@@ -3,14 +3,15 @@ import { inject, Injectable } from '@angular/core';
 import { ShowroomDetails, ShowroomForm, ShowroomHomePage } from '../../model/Showroom/ShowroomType.type';
 import { environment } from '../../environment/environment';
 import { Pageable } from '../../model/Pageable/Pageable.type';
+import { Car, CarCreation } from '../../model/Cars/Car.type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShowroomService {
+export class CarsService {
   http = inject(HttpClient);
   getShowroomList(page: number = 0, size: number = 5) {
-    return this.http.get<Pageable<ShowroomHomePage>>(`${environment.apiUrl}/public/showroom`, {
+    return this.http.get<Pageable<Car>>(`${environment.apiUrl}/public/car`, {
       params: {
         page: page.toString(),
         size: size.toString(),
@@ -18,10 +19,7 @@ export class ShowroomService {
       }
     });
   }
-  createShowRoom(body:ShowroomForm) {
-    return this.http.post<ShowroomHomePage>(`${environment.apiUrl}/private/showroom`,body);
-  }
-  getShowroomByCommercialRegistrationNumber(commercialRegistrationNumber: string) {
-    return this.http.get<ShowroomDetails>(`${environment.apiUrl}/public/showroom/${commercialRegistrationNumber}`);
+  createCar(body:CarCreation) {
+    return this.http.post<Car>(`${environment.apiUrl}/private/car`,body);
   }
 }

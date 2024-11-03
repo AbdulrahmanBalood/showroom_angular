@@ -1,8 +1,9 @@
 <header>
     <nav>
-      <span routerLink="/" class="app-name">Showroom {{isAuthenticated()}}</span>
+      <span routerLink="/" class="app-name">Showroom</span>
       <div class="nav-buttons">
-        <button *ngIf="isAuthenticated()" (click)="logout()">Logout</button>
+        <button *ngIf="isAuthenticated()" class="spaced-button" routerLink="/showroom-form">Create showroom</button>
+        <button *ngIf="isAuthenticated()" class="spaced-button" (click)="logout()">Logout</button>
         <button *ngIf="!isAuthenticated()" (click)="login()">Login</button>
       </div>
     </nav>

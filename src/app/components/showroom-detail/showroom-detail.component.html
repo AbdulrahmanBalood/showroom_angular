@@ -1,0 +1,26 @@
+<div *ngIf="showroom" class="showroom-details">
+    <h2>{{ showroom.name }}</h2>
+    <p><strong>Commercial Registration Number:</strong> {{ showroom.commercialRegistrationNumber }}</p>
+    <p><strong>Manager Name:</strong> {{ showroom.managerName }}</p>
+    <p><strong>Contact Number:</strong> {{ showroom.contactNumber }}</p>
+    <p><strong>Address:</strong> {{ showroom.address }}</p>
+  
+    <div class="cars-header">
+      <h3>Cars</h3>
+      <button [routerLink]="['/cars-form', showroom.commercialRegistrationNumber]" class="add-cars-button">Add Cars</button>
+    </div>
+  
+    <ul>
+        <li *ngFor="let car of showroom.cars" class="car-details">
+            <p><strong>VIN:</strong> {{ car.vin }}</p>
+            <p><strong>Maker:</strong> {{ car.maker }}</p>
+            <p><strong>Model:</strong> {{ car.model }}</p>
+            <p><strong>Model Year:</strong> {{ car.modelYear }}</p>
+            <p><strong>Price:</strong> {{ car.price | currency }}</p>
+          </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="!showroom" class="loading">
+    <p>Loading showroom details...</p>
+  </div>

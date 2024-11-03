@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ShowroomService } from '../../services/ShowroomService/showroom.service';
-import { ShowroomHomeDetails, ShowroomHomePage } from '../../model/Showroom/ShowroomType.type';
+import { ShowroomHomePage } from '../../model/Showroom/ShowroomType.type';
 import { catchError } from 'rxjs';
 import { Pageable } from '../../model/Pageable/Pageable.type';
 import { CommonModule } from '@angular/common';
@@ -21,12 +21,10 @@ export class ShowroomComponent  implements OnInit{
   totalPages = signal(0);
   totalElements = signal(0);
   ngOnInit(): void {
-    console.log('t')
     this.loadPage(this.currentPage());
   }
 
   loadPage(page: number) {
-    console.log('page', page);
     this.showRoomService.getShowroomList(page, this.pageSize())
       .pipe(catchError((error) => {
         console.error(error);
@@ -40,7 +38,6 @@ export class ShowroomComponent  implements OnInit{
   }
 
   changePage(newPage: number) {
-    console.log('first', newPage);
     this.currentPage.set(newPage);
     this.loadPage(newPage);
   }

@@ -7,7 +7,7 @@ export type ShowroomHomePage = {
     phoneNumber: string;
 
 }
-export type ShowroomHomeDetails = {
+export type ShowroomDetails = {
     uuid: string;
     name: string;
     commercialRegistrationNumber: string;
@@ -15,4 +15,11 @@ export type ShowroomHomeDetails = {
     phoneNumber: string;
     address: string;
     cars: Array<Car>;
+}
+export type ShowroomForm = {
+    name: string;
+    commercialRegistrationNumber: string;
+    managerName: string;
+    phoneNumber: string;
+    address: string;
 }

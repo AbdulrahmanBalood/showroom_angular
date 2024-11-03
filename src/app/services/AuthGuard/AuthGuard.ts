@@ -8,11 +8,11 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/ro
 export class AuthGuard extends KeycloakAuthGuard {
   constructor(protected override router: Router, protected override keycloakAngular: KeycloakService) {
     super(router, keycloakAngular);
-    console.log('AuthGuard initialized'); // Debugging log to check guard initialization
+    console.log('AuthGuard initialized');
   }
 
   public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    console.log('isAccessAllowed called'); // Debugging log to check if function is executed
+  
 
     if (!this.authenticated) {
       console.log('User not authenticated, redirecting to login'); // Log before login redirection

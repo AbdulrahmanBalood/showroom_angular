@@ -7,11 +7,12 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptor
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './environment/keycloak.config';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withInterceptorsFromDi()),
-    // KeycloakAngularModule,
+    ReactiveFormsModule,
     provideRouter(routes),
      provideClientHydration(),
     KeycloakService,

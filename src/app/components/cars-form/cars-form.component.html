@@ -1,0 +1,43 @@
+<form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="vin">VIN:</label>
+      <input id="vin" formControlName="vin" />
+      <div *ngIf="carForm.get('vin')?.invalid && carForm.get('vin')?.touched" class="error-message">
+        VIN is required and must be less than 25 characters.
+      </div>
+    </div>
+  
+    <div>
+      <label for="maker">Maker:</label>
+      <input id="maker" formControlName="maker" />
+      <div *ngIf="carForm.get('maker')?.invalid && carForm.get('maker')?.touched" class="error-message">
+        Maker is required and must be less than 25 characters.
+      </div>
+    </div>
+  
+    <div>
+      <label for="model">Model:</label>
+      <input id="model" formControlName="model" />
+      <div *ngIf="carForm.get('model')?.invalid && carForm.get('model')?.touched" class="error-message">
+        Model is required and must be less than 25 characters.
+      </div>
+    </div>
+  
+    <div>
+      <label for="modelYear">Model Year:</label>
+      <input id="modelYear" formControlName="modelYear" />
+      <div *ngIf="carForm.get('modelYear')?.invalid && carForm.get('modelYear')?.touched" class="error-message">
+        Model Year is required and must be a 4-digit number.
+      </div>
+    </div>
+  
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" />
+      <div *ngIf="carForm.get('price')?.invalid && carForm.get('price')?.touched" class="error-message">
+        Price is required and must be a decimal value.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="carForm.invalid">Submit</button>
+  </form>

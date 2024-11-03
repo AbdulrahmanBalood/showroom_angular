@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div class="showroom-container">
+    <div class="items-list">
+      <div class="item-card" *ngFor="let item of showroomItems(); trackBy: trackByCommercialRegistrationNumber">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.phoneNumber }}</p>
+        <a [routerLink]="['/showroom', item.commercialRegistrationNumber]">View Details</a>
+      </div>
+    </div>
+    
+    <div class="pagination">
+      <button [disabled]="currentPage() === 0" (click)="changePage(currentPage() - 1)">
+        Previous
+      </button>
+      <span>Page {{ currentPage() + 1 }} of {{ totalPages() }}</span>
+      <button [disabled]="currentPage() >= totalPages() - 1" (click)="changePage(currentPage() + 1)">
+        Next
+      </button>
+
+    </div>
+  </div>
+  
