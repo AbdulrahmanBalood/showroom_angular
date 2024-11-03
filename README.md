@@ -1,3 +1,5 @@
+# NPM Install
+Please run the command `npm install` first
 # ShowroomFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
